@@ -9,7 +9,7 @@ import java.util.List;
 public class MotorCommandExecutor {
     
     private final List<MotorCommand> commands;
-    private Motor motor;
+    public final Motor motor;
     private boolean started = false;
     private boolean complete = false;
     

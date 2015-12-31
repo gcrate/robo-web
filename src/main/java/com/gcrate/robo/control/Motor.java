@@ -11,6 +11,8 @@ import com.pi4j.io.gpio.PinState;
  * @author gcrate
  */
 public class Motor {
+    public final MotorId id;
+    
     // create gpio controller
     final GpioController gpio = GpioFactory.getInstance();    
     // control for relay 1
@@ -18,7 +20,8 @@ public class Motor {
     // control for relay 2
     final GpioPinDigitalOutput relay2Control;
     
-    public Motor(Pin relay1Pin, Pin relay2Pin) {
+    public Motor(MotorId id, Pin relay1Pin, Pin relay2Pin) {
+        this.id = id;
         this.relay1Control = gpio.provisionDigitalOutputPin(relay1Pin, PinState.LOW);
         this.relay2Control = gpio.provisionDigitalOutputPin(relay2Pin, PinState.LOW);
         
