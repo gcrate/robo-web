@@ -47,6 +47,7 @@ public class MotorCommandExecutor {
                     }
                 }
             }
+            complete = true;
         }
         
     }

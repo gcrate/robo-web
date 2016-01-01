@@ -7,6 +7,7 @@ import com.gcrate.robo.control.MotorId;
 import com.gcrate.robo.control.MotorManager;
 import com.gcrate.robo.control.MotorState;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +15,7 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -27,9 +29,9 @@ public class RoboRestController {
 
     public static final String WAIT_PREFIX = "WAIT-";
     
-    private Map<MotorId, MotorCommandExecutor> runningPrograms;
+    private Map<MotorId, MotorCommandExecutor> runningPrograms = new HashMap<>();
     
-    @RequestMapping("/execute")
+    @RequestMapping(value="/execute", method=RequestMethod.POST)
     public void executeProgram(@RequestBody List<MotorProgram> programs) throws RoboWebException {
         //Validate
         Set<MotorId> programMotorIds = new HashSet<>();
